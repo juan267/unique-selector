@@ -11,13 +11,18 @@ export function getClasses( el )
     return [];
   }
 
-    try {
-      let classList = Array.prototype.slice.call( el.classList )
+  try
+  {
+    let classList = Array.prototype.slice.call( el.classList );
 
-      // return only the valid CSS selectors based on RegEx
-      return classList.filter(item => !/^[a-z_-][a-z\d_-]*$/i.test( item ) ? null : item );
-    } catch (e) {
-      let className = el.getAttribute( 'class' );
+    // remove all wovn dynamically generated classes
+    classList = classList.filter( item => ( /^wovn/.test( item ) ? null : item ) );
+    // return only the valid CSS selectors based on RegEx
+    return classList.filter( item => ( !/^[a-z_-][a-z\d_-]*$/i.test( item ) ? null : item ) );
+  }
+  catch ( e )
+  {
+    let className = el.getAttribute( 'class' );
 
     // remove duplicate and leading/trailing whitespaces
     className = className.trim().replace( /\s+/g, ' ' );
