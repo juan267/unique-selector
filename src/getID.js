@@ -7,7 +7,8 @@ export function getID( el )
 {
   const id = el.getAttribute( 'id' );
 
-  if( id !== null && id !== '')
+  console.log('holalalallala')
+  if( id !== null && id !== '' && !id.match(/^#wovn/) )
   {
     return `#${id}`;
   }
